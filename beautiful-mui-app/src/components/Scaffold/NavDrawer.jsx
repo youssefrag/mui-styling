@@ -6,22 +6,61 @@ import {
   List,
   ListItem,
 } from "@mui/material";
-
+import { Theme, useTheme } from "@mui/material/styles";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import { ContactForm } from "../Form/ContactForm";
 
+const drawerWidth = 240;
+
+const themedStyles = (theme: Theme) => {
+  return {
+    appBar: {
+      zIndex: theme.zIndex.drawer + 1,
+    },
+  };
+};
+
+const styles = {
+  drawer: {
+    width: drawerWidth,
+    "& .MuiBackdrop-root": {
+      display: "none",
+    },
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: "rgba(120,120,120,0.2)",
+  },
+  content: {
+    padding: 4,
+    minWidth: drawerWidth,
+    marginLeft: 0,
+  },
+  contentShift: {
+    minWidth: drawerWidth,
+    marginLeft: drawerWidth,
+  },
+};
+
 export const NavDrawer = () => {
+  const theme = useTheme();
   return (
     <div>
       <BrowserRouter>
-        <AppBar position="fixed">
+        <AppBar position="fixed" sx={themedStyles(theme).appBar}>
           <Toolbar>
             <Typography variant="h6" noWrap>
               Advanced Material-UI Styling
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer variant="temporary" open={true}>
+        <Drawer
+          variant="temporary"
+          open={true}
+          sx={styles.drawer}
+          PaperProps={{ elevation: 9, sx: styles.drawerPaper }}
+        >
+          <Toolbar />
           <div>
             <List>
               {[
@@ -37,7 +76,8 @@ export const NavDrawer = () => {
             </List>
           </div>
         </Drawer>
-        <main>
+        <main style={{ ...styles.content, ...styles.contentShift }}>
+          <Toolbar />
           <Routes>
             <Route path={"/"} element={<ContactForm />} />
             <Route path={"/form"} element={<ContactForm />} />
