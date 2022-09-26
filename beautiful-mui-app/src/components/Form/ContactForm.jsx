@@ -1,11 +1,17 @@
 import {
   Autocomplete,
+  Button,
   FormControl,
+  FormControlLabel,
   FormGroup,
+  FormLabel,
   ListItemText,
   MenuItem,
   Paper,
+  Radio,
+  RadioGroup,
   Select,
+  Stack,
   TextField,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -14,6 +20,7 @@ import { contactData } from "../../Data/ContactData";
 
 const roles = ["Software Dev", "Architect", "Designer", "Business Analyst"];
 const skills = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
+const defaultRadioValue = "Work From Home";
 
 export const ContactForm = () => {
   return (
@@ -53,6 +60,37 @@ export const ContactForm = () => {
                 value=""
               />
             </LocalizationProvider>
+          </FormGroup>
+          <FormGroup row>
+            <FormGroup component="legend" htmlFor="preference-type-radio">
+              <FormLabel>Work Preference</FormLabel>
+              <RadioGroup
+                aria-label="preference"
+                id="preference-type-radio"
+                name="preference"
+                value={defaultRadioValue}
+              >
+                <FormControlLabel
+                  label={defaultRadioValue}
+                  value={defaultRadioValue}
+                  control={<Radio />}
+                />
+                <FormControlLabel
+                  label="Hybrid"
+                  value="Hybrid"
+                  control={<Radio />}
+                />
+                <FormControlLabel
+                  label="In Office"
+                  value="In Office"
+                  control={<Radio />}
+                />
+              </RadioGroup>
+            </FormGroup>
+            <Stack>
+              <Button>Save</Button>
+              <Button>Clear</Button>
+            </Stack>
           </FormGroup>
         </FormControl>
       </form>
