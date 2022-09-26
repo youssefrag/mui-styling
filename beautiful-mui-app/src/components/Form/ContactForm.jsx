@@ -21,15 +21,23 @@ import { contactData } from "../../Data/ContactData";
 const roles = ["Software Dev", "Architect", "Designer", "Business Analyst"];
 const skills = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
 const defaultRadioValue = "Work From Home";
+const minWidth = 300;
 
 export const ContactForm = () => {
   return (
     <Paper>
       <form>
         <FormControl>
-          <FormGroup row>
-            <TextField id="name" name="name" label="Name" variant="outlined" />
+          <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
+            <TextField
+              id="name"
+              name="name"
+              label="Name"
+              variant="outlined"
+              sx={{ minWidth: minWidth, marginRight: 2 }}
+            />
             <Autocomplete
+              sx={{ minWidth: minWidth }}
               options={roles}
               getOptionLabel={(roleOption) => `${roleOption}`}
               renderInput={(params) => {
@@ -40,8 +48,12 @@ export const ContactForm = () => {
               }}
             />
           </FormGroup>
-          <FormGroup row>
-            <Select id="skill-select" labelId="skill-select-label">
+          <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
+            <Select
+              id="skill-select"
+              labelId="skill-select-label"
+              sx={{ minWidth: minWidth, marginRight: 2 }}
+            >
               {skills.map((skillName) => {
                 return (
                   <MenuItem value={skillName} key={skillName}>
@@ -54,16 +66,18 @@ export const ContactForm = () => {
               <DesktopDatePicker
                 inputFormat="MM/DD/YYYY"
                 renderInput={(params) => {
-                  return <TextField {...params} />;
+                  return <TextField {...params} sx={{ minWidth: minWidth }} />;
                 }}
                 onChange={() => {}}
                 value=""
               />
             </LocalizationProvider>
           </FormGroup>
-          <FormGroup row>
-            <FormGroup component="legend" htmlFor="preference-type-radio">
-              <FormLabel>Work Preference</FormLabel>
+          <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
+            <FormGroup sx={{ minWidth: minWidth, marginRight: 2 }}>
+              <FormLabel component="legend" htmlFor="preference-type-radio">
+                Work Preference
+              </FormLabel>
               <RadioGroup
                 aria-label="preference"
                 id="preference-type-radio"
