@@ -37,6 +37,7 @@ export const ContactForm = () => {
     return {
       id: contactData.length + 1,
       name: "",
+      role: "",
       skills: [],
       startDate: `${
         today.getMonth() + 1
