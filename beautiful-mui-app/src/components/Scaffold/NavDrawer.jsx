@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { ContactForm } from "../Form/ContactForm";
 
 export const NavDrawer = () => {
   return (
@@ -28,18 +29,18 @@ export const NavDrawer = () => {
                 { text: "Contact Card Grid", route: "/grid" },
                 { text: "Table", route: "/table" },
                 { text: "Data Grid", route: "/datagrid" },
-              ].map((nav, index) => {
+              ].map((nav, index) => (
                 <ListItem key={nav.text}>
                   <Link to={nav.route}>{nav.text}</Link>
-                </ListItem>;
-              })}
+                </ListItem>
+              ))}
             </List>
           </div>
         </Drawer>
         <main>
           <Routes>
-            <Route path={"/"} element={<div>Form Page</div>} />
-            <Route path={"/form"} element={<div>Form Page</div>} />
+            <Route path={"/"} element={<ContactForm />} />
+            <Route path={"/form"} element={<ContactForm />} />
             <Route path={"/grid"} element={<div>Grid</div>} />
             <Route path={"/table"} element={<div>Table</div>} />
             <Route path={"/datagrid"} element={<div>DataGrid</div>} />
