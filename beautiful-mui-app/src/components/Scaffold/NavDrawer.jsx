@@ -55,6 +55,7 @@ export const NavDrawer = () => {
           </Toolbar>
         </AppBar>
         <Drawer
+          disableEnforceFocus
           variant="temporary"
           open={true}
           sx={styles.drawer}
