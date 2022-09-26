@@ -10,6 +10,7 @@ import { Theme, useTheme } from "@mui/material/styles";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import { ContactForm } from "../Form/ContactForm";
 import { ContactCardGrid } from "../Grid/ContactCardGrid";
+import { ContactTable } from "../Table/ContactTable";
 
 const drawerWidth = 240;
 
@@ -84,7 +85,7 @@ export const NavDrawer = () => {
             <Route path={"/"} element={<ContactForm />} />
             <Route path={"/form"} element={<ContactForm />} />
             <Route path={"/grid"} element={<ContactCardGrid />} />
-            <Route path={"/table"} element={<div>Table</div>} />
+            <Route path={"/table"} element={<ContactTable />} />
             <Route path={"/datagrid"} element={<div>DataGrid</div>} />
           </Routes>
         </main>
