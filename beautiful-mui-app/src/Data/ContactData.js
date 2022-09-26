@@ -1,7 +1,7 @@
 const today = new Date();
-const todayString = `${today.getMonth() + 1}/${today.getDate()}/${
-  today.getFullYear
-}`;
+const todayString = `${
+  today.getMonth() + 1
+}/${today.getDate()}/${today.getFullYear()}`;
 export const contactData = [
   {
     id: 1,
