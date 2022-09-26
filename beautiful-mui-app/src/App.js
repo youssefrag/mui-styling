@@ -1,5 +1,7 @@
+import { NavDrawer } from "./components/Scaffold/NavDrawer";
+
 function App() {
-  return <div className="App">Test</div>;
+  return <NavDrawer />;
 }
 
 export default App;
