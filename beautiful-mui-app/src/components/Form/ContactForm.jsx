@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Autocomplete,
   Button,
@@ -24,6 +25,58 @@ const defaultRadioValue = "Work From Home";
 const minWidth = 300;
 
 export const ContactForm = () => {
+  const today = new Date();
+  const getDefaultFormValues = () => {
+    return {
+      id: contactData.length + 1,
+      name: "",
+      skills: [],
+      startDate: `${
+        today.getMonth() + 1
+      }/${today.getDate()}/${today.getFullYear()}`,
+      preference: defaultRadioValue,
+    };
+  };
+
+  const [formValues, setFormValues] = useState(getDefaultFormValues());
+
+  const handleTextFieldChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const handleAutoCompleteChange = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: string | null
+  ) => {
+    setFormValues({
+      ...formValues,
+      role: value || "",
+    });
+  };
+
+  const handleSelectChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setFormValues({
+      ...formValues,
+      skills: typeof value === "string" ? value.split(", ") : value,
+    });
+  };
+
+  const handleDatePickerChange = (value) => {
+    setFormValues({
+      ...formValues,
+      startDate: `${value.month() + 1}/${value.date()}/${value.year()}`,
+    });
+  };
+
+  const handleRadioChange = (event, value) => {
+    const { name } = event.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
   return (
     <Paper>
       <form>
@@ -35,10 +88,17 @@ export const ContactForm = () => {
               label="Name"
               variant="outlined"
               sx={{ minWidth: minWidth, marginRight: 2 }}
+              onChange={handleTextFieldChange}
+              value={formValues.name}
             />
             <Autocomplete
               sx={{ minWidth: minWidth }}
+              onInputChange={handleAutoCompleteChange}
+              value={formValues.role || ""}
               options={roles}
+              isOptionEqualToValue={(option, value) =>
+                option === value || value === ""
+              }
               getOptionLabel={(roleOption) => `${roleOption}`}
               renderInput={(params) => {
                 return <TextField name="role" {...params} />;
@@ -53,6 +113,9 @@ export const ContactForm = () => {
               id="skill-select"
               labelId="skill-select-label"
               sx={{ minWidth: minWidth, marginRight: 2 }}
+              onChange={handleSelectChange}
+              value={formValues.skills || ""}
+              multiple
             >
               {skills.map((skillName) => {
                 return (
@@ -68,8 +131,8 @@ export const ContactForm = () => {
                 renderInput={(params) => {
                   return <TextField {...params} sx={{ minWidth: minWidth }} />;
                 }}
-                onChange={() => {}}
-                value=""
+                onChange={handleDatePickerChange}
+                value={formValues.startDate}
               />
             </LocalizationProvider>
           </FormGroup>
@@ -83,6 +146,7 @@ export const ContactForm = () => {
                 id="preference-type-radio"
                 name="preference"
                 value={defaultRadioValue}
+                onChange={handleRadioChange}
               >
                 <FormControlLabel
                   label={defaultRadioValue}
