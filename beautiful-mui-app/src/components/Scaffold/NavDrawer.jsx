@@ -11,6 +11,7 @@ import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import { ContactForm } from "../Form/ContactForm";
 import { ContactCardGrid } from "../Grid/ContactCardGrid";
 import { ContactTable } from "../Table/ContactTable";
+import { ContactDataGrid } from "../DataGrid/ContactDataGrid";
 
 const drawerWidth = 240;
 
@@ -86,7 +87,7 @@ export const NavDrawer = () => {
             <Route path={"/form"} element={<ContactForm />} />
             <Route path={"/grid"} element={<ContactCardGrid />} />
             <Route path={"/table"} element={<ContactTable />} />
-            <Route path={"/datagrid"} element={<div>DataGrid</div>} />
+            <Route path={"/datagrid"} element={<ContactDataGrid />} />
           </Routes>
         </main>
       </BrowserRouter>

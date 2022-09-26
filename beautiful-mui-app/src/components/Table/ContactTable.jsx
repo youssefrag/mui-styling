@@ -27,9 +27,11 @@ export const ContactTable = () => {
               <TableRow key={contact.name}>
                 {Object.entries(contact).map(([key, value]) => {
                   if (key === "skills") {
-                    return <TableCell>{value.join(", ")}</TableCell>;
+                    return (
+                      <TableCell key={value}>{value.join(", ")}</TableCell>
+                    );
                   } else if (key !== "id") {
-                    return <TableCell>{value}</TableCell>;
+                    return <TableCell key={value}>{value}</TableCell>;
                   }
                   return "";
                 })}
