@@ -2,22 +2,14 @@ import { useState } from "react";
 import {
   Alert,
   AlertTitle,
-  Autocomplete,
   Button,
   Checkbox,
   Dialog,
   FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
   ListItemText,
   MenuItem,
   Paper,
-  Radio,
-  RadioGroup,
-  Select,
   Stack,
-  TextField,
 } from "@mui/material";
 
 import { contactData } from "../../Data/ContactData";
@@ -26,6 +18,7 @@ import { BeautifulAutocomplete } from "./FormSubcomponents/BeautifulAutocomplete
 import { BeautifulSelect } from "./FormSubcomponents/BeautifulSelect";
 import { BeautifulDatePicker } from "./FormSubcomponents/BeautifulDatePicker";
 import { BeautifulRadios } from "./FormSubcomponents/BeautifulRadios";
+import { StyledFormGroup } from "./FormSubcomponents/StyledFormGroup";
 
 const roles = ["Software Dev", "Architect", "Designer", "Business Analyst"];
 const skills = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
@@ -124,19 +117,12 @@ export const ContactForm = () => {
       <Paper
         sx={{
           ...paperInputsStyle,
-          margin: { xs: 1, sm: 2 },
-          zIndex: "appBar",
-          "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.1)",
-          },
-          "& button.MuiButton-text": {
-            backgroundColor: "primary.light",
-          },
+          margin: 1,
         }}
       >
         <form>
           <FormControl>
-            <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
+            <StyledFormGroup row paddingtop={20}>
               <BeautifulTextField
                 onChange={handleTextFieldChange}
                 value={formValues.name}
@@ -146,8 +132,8 @@ export const ContactForm = () => {
                 value={formValues.role || ""}
                 options={roles}
               />
-            </FormGroup>
-            <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
+            </StyledFormGroup>
+            <StyledFormGroup row>
               <BeautifulSelect
                 onChange={handleSelectChange}
                 value={formValues.skills || ""}
@@ -167,8 +153,8 @@ export const ContactForm = () => {
                 onChange={handleDatePickerChange}
                 value={formValues.startDate}
               />
-            </FormGroup>
-            <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
+            </StyledFormGroup>
+            <StyledFormGroup row>
               <BeautifulRadios
                 preference={formValues.preference}
                 handleRadioChange={handleRadioChange}
@@ -177,7 +163,7 @@ export const ContactForm = () => {
                 <Button onClick={handleSubmit}>Save</Button>
                 <Button onClick={handleClear}>Clear</Button>
               </Stack>
-            </FormGroup>
+            </StyledFormGroup>
           </FormControl>
         </form>
       </Paper>
