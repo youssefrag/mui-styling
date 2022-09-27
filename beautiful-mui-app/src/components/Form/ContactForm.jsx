@@ -160,7 +160,11 @@ export const ContactForm = () => {
                 preference={formValues.preference}
                 handleRadioChange={handleRadioChange}
               />
-              <Stack>
+              <Stack
+                justifyContent="space-around"
+                alignItems="center"
+                sx={{ minWidth: minWidth }}
+              >
                 <Button
                   variant="contained"
                   sx={{ height: 56, width: 100 }}
