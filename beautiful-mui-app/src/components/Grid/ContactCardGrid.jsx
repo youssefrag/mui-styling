@@ -17,8 +17,20 @@ import { contactData } from "../../Data/ContactData";
 const contactListHeight = 23;
 let maxSkills = 1;
 
+const gridAlignSize = {
+  minWidth: 400,
+  minHeight: 300,
+};
+
 export const ContactCardGrid = () => {
   const [open, setOpen] = useState(true);
+  let gridAlignProps = open
+    ? {}
+    : {
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
+      };
 
   return (
     <Box m={1}>
@@ -29,14 +41,24 @@ export const ContactCardGrid = () => {
       >
         Collapse
       </Button>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        spacing={2}
+        sx={{ backgroundColor: "grid.main", borderRadius: 2, width: 680 }}
+      >
         {contactData.map((contact) => {
           maxSkills =
             contact.skills.length > maxSkills
               ? contact.skills.length
               : maxSkills;
           return (
-            <Grid item key={contact.name}>
+            <Grid
+              item
+              key={contact.name}
+              xs={6}
+              sx={open ? {} : gridAlignSize}
+              {...gridAlignProps}
+            >
               <Card sx={{ width: 300, boxShadow: 6 }}>
                 <CardHeader
                   title={contact.name}
