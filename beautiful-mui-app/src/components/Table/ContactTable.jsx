@@ -8,17 +8,42 @@ import {
 } from "@mui/material";
 import { contactData } from "../../Data/ContactData";
 
+const borderBottomColor = {
+  borderBottomColor: "primary.main",
+};
+
 export const ContactTable = () => {
   return (
-    <TableContainer>
+    <TableContainer
+      sx={{
+        borderRadius: 1,
+        boxShadow: 6,
+        margin: 1,
+        width: "calc(100% - 16px)",
+      }}
+    >
       <Table>
         <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Role</TableCell>
-            <TableCell>Skills</TableCell>
-            <TableCell>Start Date</TableCell>
-            <TableCell>Work Preference</TableCell>
+          <TableRow
+            sx={{
+              backgroundColor: "grid.main",
+            }}
+          >
+            <TableCell sx={{ ...borderBottomColor, width: "30%" }}>
+              Name
+            </TableCell>
+            <TableCell sx={{ ...borderBottomColor, width: "17%" }}>
+              Role
+            </TableCell>
+            <TableCell sx={{ ...borderBottomColor, width: "17%" }}>
+              Skills
+            </TableCell>
+            <TableCell sx={{ ...borderBottomColor, width: "17%" }}>
+              Start Date
+            </TableCell>
+            <TableCell sx={{ ...borderBottomColor, width: "19%" }}>
+              Work Preference
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -28,10 +53,31 @@ export const ContactTable = () => {
                 {Object.entries(contact).map(([key, value]) => {
                   if (key === "skills") {
                     return (
-                      <TableCell key={value}>{value.join(", ")}</TableCell>
+                      <TableCell key={value} sx={borderBottomColor}>
+                        {value.join(", ")}
+                      </TableCell>
+                    );
+                  } else if (key === "name") {
+                    return (
+                      <TableCell
+                        key={key}
+                        sx={{
+                          backgroundColor: "primary.light",
+                          ...borderBottomColor,
+                        }}
+                        onClick={(event) => {
+                          console.log(event.target.innerHTML);
+                        }}
+                      >
+                        {value}
+                      </TableCell>
                     );
                   } else if (key !== "id") {
-                    return <TableCell key={value}>{value}</TableCell>;
+                    return (
+                      <TableCell key={key} sx={borderBottomColor}>
+                        {value}
+                      </TableCell>
+                    );
                   }
                   return "";
                 })}
