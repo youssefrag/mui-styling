@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { contactData } from "../../Data/ContactData";
 
@@ -6,6 +7,14 @@ const getColumns = () => {
     {
       field: "name",
       headerName: "Name",
+      minWidth: 150,
+      renderCell: (cellValues) => {
+        return (
+          <Box sx={{ color: "primary.main", fontSize: 18, fontWeight: "bold" }}>
+            {cellValues.value}
+          </Box>
+        );
+      },
     },
     {
       field: "role",
@@ -30,10 +39,11 @@ const getColumns = () => {
 };
 
 export const ContactDataGrid = () => {
+  const rows = [...contactData];
   return (
     <div style={{ height: 500 }}>
       <DataGrid
-        rows={contactData}
+        rows={rows}
         columns={getColumns()}
         headerHeight={60}
         rowHeight={120}
