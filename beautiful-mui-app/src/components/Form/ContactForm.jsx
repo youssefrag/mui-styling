@@ -161,8 +161,20 @@ export const ContactForm = () => {
                 handleRadioChange={handleRadioChange}
               />
               <Stack>
-                <Button onClick={handleSubmit}>Save</Button>
-                <Button onClick={handleClear}>Clear</Button>
+                <Button
+                  variant="contained"
+                  sx={{ height: 56, width: 100 }}
+                  onClick={handleSubmit}
+                >
+                  Save
+                </Button>
+                <Button
+                  variant="beautiful"
+                  sx={{ height: 56, width: 100 }}
+                  onClick={handleClear}
+                >
+                  Clear
+                </Button>
               </Stack>
             </StyledFormGroup>
           </FormControl>

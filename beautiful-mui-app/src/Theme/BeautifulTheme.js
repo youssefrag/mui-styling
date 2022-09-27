@@ -12,4 +12,23 @@ export const BeautifulTheme = createTheme({
       dark: "rgba(0,0,0,0.2)",
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          border: "1px solid orange",
+        },
+      },
+      variants: [
+        {
+          props: { variant: "beautiful" },
+          style: {
+            fontStyle: "italic",
+            border: "4px solid lightpink",
+            color: "fuchsia",
+          },
+        },
+      ],
+    },
+  },
 });
