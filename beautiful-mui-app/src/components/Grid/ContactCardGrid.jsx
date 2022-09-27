@@ -14,6 +14,9 @@ import {
 } from "@mui/material";
 import { contactData } from "../../Data/ContactData";
 
+const contactListHeight = 23;
+let maxSkills = 1;
+
 export const ContactCardGrid = () => {
   const [open, setOpen] = useState(true);
 
@@ -28,18 +31,30 @@ export const ContactCardGrid = () => {
       </Button>
       <Grid container spacing={2}>
         {contactData.map((contact) => {
+          maxSkills =
+            contact.skills.length > maxSkills
+              ? contact.skills.length
+              : maxSkills;
           return (
             <Grid item key={contact.name}>
-              <Card sx={{ width: 300 }}>
+              <Card sx={{ width: 300, boxShadow: 6 }}>
                 <CardHeader
                   title={contact.name}
                   subheader={contact.role}
                   avatar={
-                    <Avatar>{contact.name[0].toUpperCase() || "A"}</Avatar>
+                    <Avatar sx={{ backgroundColor: "primary.main" }}>
+                      {contact.name[0].toUpperCase() || "A"}
+                    </Avatar>
                   }
+                  sx={{
+                    borderBottom: "1px solid",
+                    borderBottomColor: "primary.main",
+                  }}
                 />
                 <Collapse in={open}>
-                  <CardContent>
+                  <CardContent
+                    sx={{ height: 104 + maxSkills * contactListHeight }}
+                  >
                     <Typography>
                       <strong>Start Date:</strong> {contact.startDate}
                     </Typography>
