@@ -1,6 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { contactData } from "../../Data/ContactData";
+
+const handlePrint = (cellValues) => {
+  console.log(cellValues);
+};
 
 const getColumns = () => {
   return [
@@ -34,6 +38,21 @@ const getColumns = () => {
     {
       field: "preference",
       headerName: "Work Preference",
+    },
+    {
+      field: "print",
+      renderCell: (cellValues) => {
+        return (
+          <Button
+            variant="contained"
+            onClick={() => {
+              handlePrint(cellValues.row);
+            }}
+          >
+            Print
+          </Button>
+        );
+      },
     },
   ];
 };
