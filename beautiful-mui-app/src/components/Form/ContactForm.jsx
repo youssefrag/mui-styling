@@ -118,6 +118,7 @@ export const ContactForm = () => {
         sx={{
           ...paperInputsStyle,
           margin: 1,
+          backgroundColor: "grid.main",
         }}
       >
         <form>
