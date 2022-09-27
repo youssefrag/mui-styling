@@ -4,6 +4,7 @@ import {
   AlertTitle,
   Autocomplete,
   Button,
+  Checkbox,
   Dialog,
   FormControl,
   FormControlLabel,
@@ -142,6 +143,9 @@ export const ContactForm = () => {
                 {skills.map((skillName) => {
                   return (
                     <MenuItem value={skillName} key={skillName}>
+                      <Checkbox
+                        checked={formValues.skills.includes(skillName)}
+                      />
                       <ListItemText primary={skillName} />
                     </MenuItem>
                   );
