@@ -44,7 +44,14 @@ export const ContactCardGrid = () => {
       <Grid
         container
         spacing={2}
-        sx={{ backgroundColor: "grid.main", borderRadius: 2, width: 680 }}
+        sx={{
+          paddingLeft: 2,
+          paddingBottom: 2,
+          marginLeft: 0,
+          backgroundColor: "grid.main",
+          borderRadius: 2,
+          width: 680,
+        }}
       >
         {contactData.map((contact) => {
           maxSkills =
