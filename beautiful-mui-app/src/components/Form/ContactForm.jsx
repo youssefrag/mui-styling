@@ -121,7 +121,19 @@ export const ContactForm = () => {
 
   return (
     <>
-      <Paper sx={paperInputsStyle}>
+      <Paper
+        sx={{
+          ...paperInputsStyle,
+          margin: { xs: 1, sm: 2 },
+          zIndex: "appBar",
+          "&:hover": {
+            backgroundColor: "rgba(0,0,0,0.1)",
+          },
+          "& button.MuiButton-text": {
+            backgroundColor: "primary.light",
+          },
+        }}
+      >
         <form>
           <FormControl>
             <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
