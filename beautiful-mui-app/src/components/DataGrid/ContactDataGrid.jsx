@@ -6,6 +6,23 @@ const handlePrint = (cellValues) => {
   console.log(cellValues);
 };
 
+const datagridSx = {
+  "& .MuiDataGrid-columnHeaders": {
+    backgroundColor: "primary.main",
+  },
+  "& .MuiDataGrid-columnHeaderTitle": {
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  "& .MuiDataGrid-virtualScrollerRenderZone": {
+    "& .MuiDataGrid-row": {
+      "&:nth-of-type(2n)": {
+        backgroundColor: "grid.main",
+      },
+    },
+  },
+};
+
 const getColumns = () => {
   return [
     {
@@ -67,6 +84,7 @@ export const ContactDataGrid = () => {
         headerHeight={60}
         rowHeight={120}
         pageSize={5}
+        sx={datagridSx}
       ></DataGrid>
       ;
     </div>
