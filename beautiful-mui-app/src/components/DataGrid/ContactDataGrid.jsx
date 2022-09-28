@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Toolbar } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { contactData } from "../../Data/ContactData";
 
@@ -85,6 +85,9 @@ export const ContactDataGrid = () => {
         rowHeight={120}
         pageSize={5}
         sx={datagridSx}
+        components={{
+          Toolbar: () => <Toolbar></Toolbar>,
+        }}
       ></DataGrid>
       ;
     </div>

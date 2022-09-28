@@ -20,7 +20,11 @@ export const BeautifulSelect = (props) => {
       id="skill-select"
       ref={selectInputComponent}
       labelId="skill-select-label"
-      sx={{ minWidth: minWidth, marginRight: 2 }}
+      sx={{
+        minWidth: minWidth,
+        marginRight: { md: 2 },
+        marginBottom: { xs: 2, md: 0 },
+      }}
       multiple
       renderValue={(selected) => selected.join(", ")}
       MenuProps={{

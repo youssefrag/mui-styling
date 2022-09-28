@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   AppBar,
   Drawer,
@@ -7,6 +8,7 @@ import {
   ListItem,
 } from "@mui/material";
 import { Theme, useTheme, ThemeProvider } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import { ContactForm } from "../Form/ContactForm";
 import { ContactCardGrid } from "../Grid/ContactCardGrid";
@@ -16,42 +18,50 @@ import { BeautifulTheme } from "../../Theme/BeautifulTheme";
 
 const drawerWidth = 240;
 
-const themedStyles = (theme: Theme) => {
+const themedStyles = (theme: Theme, responsiveDrawerWidth) => {
   return {
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
     },
-  };
-};
-
-const styles = {
-  drawer: {
-    width: drawerWidth,
-    "& .MuiBackdrop-root": {
-      display: "none",
+    drawer: {
+      width: drawerWidth,
+      "& .MuiBackdrop-root": {
+        display: "none",
+      },
     },
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    backgroundColor: "rgba(120,120,120,0.2)",
-  },
-  content: {
-    padding: 4,
-    minWidth: drawerWidth,
-    marginLeft: 0,
-  },
-  contentShift: {
-    minWidth: drawerWidth,
-    marginLeft: drawerWidth,
-  },
+    drawerPaper: {
+      width: drawerWidth,
+      backgroundColor: "rgba(120,120,120,0.2)",
+    },
+    content: {
+      padding: 4,
+      minWidth: drawerWidth,
+      marginLeft: 0,
+    },
+    contentShift: {
+      minWidth: drawerWidth,
+      marginLeft: drawerWidth,
+    },
+  };
 };
 
 export const NavDrawer = () => {
   const theme = useTheme();
+  const greaterThan375 = useMediaQuery("(min-width: 376px)");
+  const [open, setOpen] = useState(greaterThan375);
+  const responsiveDrawerWidth = greaterThan375 ? drawerWidth : "100%";
+
+  useEffect(() => {
+    setOpen(greaterThan375);
+  }, [greaterThan375]);
+
   return (
     <div>
       <BrowserRouter>
-        <AppBar position="fixed" sx={themedStyles(theme).appBar}>
+        <AppBar
+          position="fixed"
+          sx={themedStyles(theme, responsiveDrawerWidth).appBar}
+        >
           <Toolbar>
             <Typography variant="h6" noWrap>
               Advanced Material-UI Styling
@@ -61,9 +71,9 @@ export const NavDrawer = () => {
         <Drawer
           disableEnforceFocus
           variant="temporary"
-          open={true}
-          sx={styles.drawer}
-          PaperProps={{ elevation: 9, sx: styles.drawerPaper }}
+          open={open}
+          sx={themedStyles.drawer}
+          PaperProps={{ elevation: 9, sx: themedStyles.drawerPaper }}
         >
           <Toolbar />
           <div>
@@ -81,7 +91,7 @@ export const NavDrawer = () => {
             </List>
           </div>
         </Drawer>
-        <main style={{ ...styles.content, ...styles.contentShift }}>
+        <main style={{ ...themedStyles.content, ...themedStyles.contentShift }}>
           <Toolbar />
           <ThemeProvider theme={BeautifulTheme}>
             <Routes>
